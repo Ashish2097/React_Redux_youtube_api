@@ -18,6 +18,13 @@
 	border-radius: 4px;
 }
 
+.my {
+	width: 645px;
+	height: 363px;
+	left: 0px;
+	top: 0px;
+}
+
 .list-group-item {
 	cursor: pointer;
 }

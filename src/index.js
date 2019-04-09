@@ -1,5 +1,6 @@
 // Youtube API key : AIzaSyB55t6oVZ281Kjk9IBGVyeEcUgfEcD3Qes
 
+import _ from 'lodash';
 import YTSearch from 'youtube-api-search';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -18,12 +19,7 @@ class App extends Component {
 			selectedVideo : null
 		};
 
-		YTSearch({key: API_KEY, term: "Youtube"}, (videos)=> {
-			this.setState({
-			 	videos,
-				selectedVideo : videos[0]
-			});
-		});
+		this.videoSearch('Youtube Home');
 	}
 
 	videoSearch(term) {
@@ -34,8 +30,9 @@ class App extends Component {
 			});
 		});
 	}
-	
+
 	render () {
+		const videoSearch = _.debounce(term => this.videoSearch(term), 1000);
 		return (
 			<div>
 				<Searchbar onSearchTermChange = {term => this.videoSearch(term)} />
